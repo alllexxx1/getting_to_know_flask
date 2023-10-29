@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Guests</title>
+  </head>
+  <body>
+  <a href="{{ url_for('guests_new') }}">Sign up</a>
+   <ul>
+   {% for guest in current_guests %}
+    <li><a href="{{ url_for('get_guest', name=guest.nickname) }}">{{ guest.nickname }}</a></li>
+   {% endfor %}
+   </ul>
+
+   <hr>
+
+   {% if prev_url %}
+    <a href={{ prev_url }}>Back</a>
+   {% endif %}
+
+   |Page {{ page }} of {{ total_pages }}|
+
+   {% if next_url %}
+    <a href={{ next_url }}>Forward</a>
+   {% endif %}
+
+   <hr>
+
+   <div>
+    <a href="?page={{ 1 if page < 2 else page - 1 }}">Back</a>
+
+    |Page {{ page }} of {{ total_pages }}|
+
+    <a href="?page={{ total_pages if page == total_pages else page + 1 }}">Forward</a>
+      </div>
+  </body>
+</html>
+

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word List</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: #f8f8f8;
+        }
+
+        .flash-messages {
+            list-style-type: none;
+            padding: 10px;
+            background-color: #dff0d8; /* Green background for success messages */
+            border: 1px solid #3c763d; /* Border color for success messages */
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .flash-messages li {
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 5px;
+            color: #3c763d; /* Text color for success messages */
+        }
+
+        .flash-messages .error {
+            background-color: #f2dede; /* Red background for error messages */
+            border-color: #a94442; /* Border color for error messages */
+            color: #a94442; /* Text color for error messages */
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+            transition: color 0.3s ease-in-out;
+        }
+
+        a:hover {
+            color: #1d6fa5;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin: 20px 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="search"] {
+            padding: 8px;
+            width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            padding: 8px 16px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    {% if messages %}
+        <ul class="flash-messages">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <a href="{{ url_for('new_word') }}">Add a new word</a>
+
+    <hr>
+
+    <ul>
+        {% for word in current_words %}
+            <li>
+                <strong><a href="{{ url_for('get_word', slug=word.word) }}" title="{{ word.translation }}" target="_blank">{{ word.word }}</a></strong>
+                <span style="margin-left: 10px; color: #777;"><a href="{{ url_for('patch_word', slug=word.word) }}">Edit</a></span>
+                <form action="{{ url_for('delete_word', slug=word.word) }}" method="post"
+                onsubmit="return confirm('Are you sure you want to delete the word? This action cannot be undone.');">
+                <input type="submit" value="Remove">
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <a href="?page={{1 if page < 2 else page - 1}}">Previous page</a>
+
+    | Page {{ page }} of {{ total_pages }} |
+
+    <a href="?page={{total_pages if page == total_pages else page + 1}}">Next page</a>
+
+    <hr>
+
+    <form action='/words' method='get'>
+        <input type='search' name='term' placeholder='Search...' value='{{ search }}'/>
+        <input type='submit' value='Go'/>
+    </form>
+
+    <hr>
+
+    {% for word in words %}
+        <ul>
+            <li><strong>{{ word.word }}</strong> - {{ word.translation }}</li>
+        </ul>
+    {% endfor %}
+
+</body>
+</html>
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Words</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--    {% if messages %}-->
+<!--        <ul class="flash-messages">-->
+<!--            {% for category, message in messages %}-->
+<!--                <li class="{{ category }}">{{ message }}</li>-->
+<!--          {% endfor %}-->
+<!--        </ul>-->
+<!--      {% endif %}-->
+<!--    <a href="{{ url_for('new_word') }}">Add a new word</a>-->
+
+<!--    <hr>-->
+
+<!--    <ul>-->
+<!--        {% for word in current_words %}-->
+<!--            <li><a href="{{ url_for('get_word', slug=word.word) }}">{{ word.word }}</a></li>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
+
+<!--    <hr>-->
+
+<!--    <a href="?page={{1 if page < 2 else page - 1}}">Previous page</a>-->
+
+<!--    |Page {{ page }} of {{ total_pages }}|-->
+
+<!--    <a href="?page={{total_pages if page == total_pages else page + 1}}">Next page</a>-->
+
+<!--    <hr>-->
+
+<!--    <form action='/words' method='get'>-->
+<!--        <input type='search' name='term' placeholder='GO!' value='{{ search }}'/>-->
+<!--        <input type='submit' value='Search'/>-->
+<!--    </form>-->
+
+<!--    <hr>-->
+
+<!--    {% for word in words %}-->
+<!--    <ul>-->
+<!--     <li>{{ word.word }}</li>-->
+<!--    </ul>-->
+<!--    {% endfor %}-->
+<!--        -->
+<!--</body>-->
+<!--</html>-->

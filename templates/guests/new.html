@@ -1,0 +1,26 @@
+<h3>Registration</h3>
+
+<hr>
+
+<form action='{{ url_for('guests_post') }}' method='post'>
+ <div>
+  <label>
+    Name
+    <input type='text' required name='nickname' value="{{ guest.nickname }}">
+  </label>
+  {% if errors.nickname %}
+   <div>{{ errors.nickname }}</div>
+  {% endif %}
+ </div>
+ <div>
+  <label>
+   Email
+   <input type='email' required name='email' value="{{ guest.email }}">
+  </label>
+  {% if errors.email %}
+   <div>{{ errors.email }}</div>
+  {% endif %}
+ </div>
+ <button>Sign Up</button>
+</form>
+

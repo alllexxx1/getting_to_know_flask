@@ -1,0 +1,26 @@
+<h3>Add a new item</h3>
+
+<hr>
+
+<form action="{{ url_for('items_post') }}" method='post'>
+ <div>
+  <label>
+    Name
+    <input type='text' required name='name' value="{{ item.name }}">
+  </label>
+  {% if errors.name %}
+   <div>{{ errors.name }}</div>
+  {% endif %}
+ </div>
+ <div>
+  <label>
+   Cost
+   <input type='text' required name='cost' value="{{ item.cost }}">
+  </label>
+  {% if errors.cost %}
+   <div>{{ errors.cost }}</div>
+  {% endif %}
+ </div>
+ <button>Sign Up</button>
+</form>
+

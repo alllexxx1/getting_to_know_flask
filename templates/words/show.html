@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Definition</title>
+ </head>
+ <body>
+  <table>
+   <tr>
+<!--    <td>{{ word.word }}</td>-->
+    <td><a href="{{ url_for('get_translation', slug=word.word) }}">{{ word.definition }}</a></td>
+    <td>
+        <form action="{{ url_for('delete_word', slug=word.word) }}" method="post"
+        onsubmit="return confirm('Are you sure you want to delete the word? This action cannot be undone.');">
+        <input type="submit" value="Remove">
+        </form>
+    </td>
+   </tr>
+  </table>
+
+  <hr>
+
+  <a href="{{ url_for('get_words') }}">Main Page</a>
+
+ </body>
+</html>

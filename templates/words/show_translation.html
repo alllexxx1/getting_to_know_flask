@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Definition</title>
+ </head>
+ <body>
+  <table>
+   <tr>
+<!--    <td>{{ word.word }}</td>-->
+    <td>{{ word.translation }}</td>
+   </tr>
+  </table>
+
+  <hr>
+
+  <a href="{{ url_for('get_word', slug=word.word) }}">Back to defenition</a>
+
+ </body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit the word</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+       h2 {
+            text-align: center;
+            color: #e74c3c; /* Change to your desired color */
+            font-size: 24px; /* Change to your desired font size */
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            /* Set a fixed height for the textarea */
+            height: 80px;
+            /* Allow vertical resizing */
+            resize: vertical;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <form action="{{ url_for('patch_word', slug=word.word) }}" method="post">
+        <h2>Edit the word</h2>
+        {% include "words/form.html" %}
+
+<!--        <label for="word">Word:</label>-->
+<!--        <input type="text" id="word" name="word" required value="{{ word.word }}">-->
+<!--        {% if errors.word %}-->
+<!--            <div>{{ errors.word }}</div>-->
+<!--        {% endif %}-->
+
+<!--        <label for="translation">Translation:</label>-->
+<!--        <input type="text" id="translation" name="translation" value="{{ word.translation }}">-->
+
+<!--        <label for="definition">Definition:</label>-->
+<!--        &lt;!&ndash; Set a fixed height for the textarea &ndash;&gt;-->
+<!--        <textarea id="definition" name="definition" rows="4" placeholder="{{ word.definition }}"></textarea>-->
+<!--        {% if errors.definition %}-->
+<!--            <div>{{ errors.definition }}</div>-->
+<!--        {% endif %}-->
+
+        <input type="submit" value="Update">
+    </form>
+
+</body>
+</html>
