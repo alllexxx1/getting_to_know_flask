@@ -9,14 +9,15 @@ from flask import (
     make_response,
     session)
 from validator import validate, w_validate, i_validate
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import json
 import os
 
-load_dotenv()
+# load_dotenv()
 app = Flask(__name__)
 # app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-app.secret_key = os.environ.get('SECRET_KEY')
+# app.secret_key = os.environ.get('SECRET_KEY')
+app.secret_key = 'secret_key'
 
 NAMES = ['Mike', 'Mishel', 'Adel', 'Keks', 'Kamila']
 ID = 0
